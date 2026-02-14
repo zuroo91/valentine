@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<title>Happy Valentine 💗</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#e6a4ad;
+    overflow:hidden;
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    display:none;
+}
+
+.active{
+    display:flex;
+}
+
+h1{
+    font-family:'Playfair Display', serif;
+    color:#7a1e3a;
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+p{
+    font-family:'Poppins', sans-serif;
+    color:#7a1e3a;
+    font-size:18px;
+    max-width:420px;
+    line-height:1.7;
+}
+
+button{
+    margin-top:35px;
+    padding:12px 35px;
+    border:none;
+    border-radius:30px;
+    background:#7a1e3a;
+    color:white;
+    font-family:'Poppins', sans-serif;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#5a142a;
+}
+
+/* polaroid */
+.polaroid{
+    background:white;
+    padding:15px;
+    width:280px;
+    box-shadow:0 15px 25px rgba(0,0,0,0.2);
+}
+
+.polaroid img{
+    width:100%;
+}
+
+.polaroid p{
+    margin-top:10px;
+    font-style:italic;
+    font-size:14px;
+}
+
+/* floating animation */
+.floating{
+    position:absolute;
+    font-size:22px;
+    animation: float 7s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-100vh);}
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="page active" id="page1">
+    <h1>Happy Valentine's Dayy sayanggg!! 💗</h1>
+    <p> Di hari yang penuh cinta ini, 
+      i made something special for u ma bumblebee</p>
+    <button onclick="nextPage()">tap <3</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>haloo my handsome, my love, my world! 🌎✨</h1>
+    <p>
+        terimakasih telah hadir dan selalu mengisi tangki cintakuu, 
+        alwayss be my partner in love yaa sayangg
+    </p>
+    <button onclick="nextPage()">open it <3</button>
+</div>
+
+<!-- PAGE 3 (TAMBAHAN BARU) -->
+<div class="page" id="page3">
+    <h1>Tahun ini jadi tahun pertama kita rayain valentine</h1>
+    <p>
+        semoga di tahun-tahun berikutnya kita bisa
+         ngerayain valentine bareng bareng yaa
+    </p>
+    <button onclick="nextPage()">💌</button>
+</div>
+
+<!-- PAGE 4 FOTO -->
+<div class="page" id="page4">
+    <div class="polaroid">
+        <img src="images/foto1.jpeg">
+        <p>everytime i look at u, i fall in love 
+            all over again</p>
+    </div>
+    <button onclick="nextPage()">terakhir ✨</button>
+</div>
+
+<!-- PAGE 5 LAST -->
+<div class="page" id="page5">
+    <h1>Terima Kasih 🤍</h1>
+    <p id="typing"></p>
+</div>
+
+<script>
+let current = 1;
+
+function nextPage(){
+    document.getElementById("page"+current).classList.remove("active");
+    current++;
+    document.getElementById("page"+current).classList.add("active");
+
+    if(current === 5){
+        typeText();
+    }
+}
+
+/* typing effect */
+let text = "i just want to say that im so gladd to have u in my life sayanggg, terimakasihh banyakk karnaa selaluuu mauu mempertahankann kitaa, sesibukk apapunn semogaa rasaa sayangg kitaa selaluu bertambahh yaa";
+let i = 0;
+
+function typeText(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeText,35);
+    }
+}
+
+/* floating cute animation */
+let emojis = ["💗","🌸","✨","🤍"];
+for(let i=0;i<18;i++){
+    let span = document.createElement("span");
+    span.classList.add("floating");
+    span.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+    span.style.left = Math.random()*100+"%";
+    span.style.animationDuration = (5+Math.random()*5)+"s";
+    document.body.appendChild(span);
+}
+</script>
+
+</body>
+</html>
